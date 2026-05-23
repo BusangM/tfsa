@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, animate } from "framer-motion";
-import { X } from "lucide-react";
+import { Volume2, VolumeX, X } from "lucide-react";
 import { useSimpleMode } from "@/context/simple-mode-context";
 import { useIkagengScene } from "@/context/ikageng-scene-context";
 import { getIkagengNarration, IKAGENG_NAME } from "@/content/ikageng";
@@ -43,6 +43,7 @@ export function IkagengCompanion() {
   const [driftIdx, setDriftIdx] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [waving, setWaving] = useState(false);
+  const [muted, setMuted] = useState(false);
   const [viewport, setViewport] = useState({ w: 1200, h: 800 });
 
   const x = useMotionValue(0);
@@ -106,6 +107,15 @@ export function IkagengCompanion() {
     return () => clearTimeout(t);
   }, [isActive, isDragging, driftIdx]);
 
+  const handleMuteToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!muted) {
+      neural.stop();
+      browser.stop();
+    }
+    setMuted(m => !m);
+  };
+
   const handleClick = async () => {
     if (neural.speaking || neural.loading) {
       neural.stop();
@@ -114,6 +124,7 @@ export function IkagengCompanion() {
     }
     setOpen(true);
     setHint(false);
+    if (muted) return;
     try {
       await neural.speak(speakText);
     } catch {
@@ -216,6 +227,24 @@ export function IkagengCompanion() {
             waving={waving}
           />
           <IkagengPropBadge prop={narration.prop} />
+
+          {/* Mute toggle — bottom-left of character */}
+          <button
+            type="button"
+            onClick={handleMuteToggle}
+            aria-label={muted ? "Unmute Ikageng" : "Mute Ikageng"}
+            className={[
+              "absolute -bottom-1 -left-1 z-10 flex h-6 w-6 items-center justify-center",
+              "rounded-full border shadow-md transition-colors",
+              muted
+                ? "border-[var(--color-destructive)]/40 bg-[var(--color-destructive)]/10 text-[var(--color-destructive)]"
+                : "border-[var(--color-border)] bg-[var(--color-card)] text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)]",
+            ].join(" ")}
+          >
+            {muted
+              ? <VolumeX className="h-3 w-3" />
+              : <Volume2 className="h-3 w-3" />}
+          </button>
         </motion.button>
       </motion.div>
     </>

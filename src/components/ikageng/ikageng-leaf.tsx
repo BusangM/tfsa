@@ -26,13 +26,21 @@ export function IkagengLeaf({
 }: IkagengLeafProps) {
   const dim = SIZES[size];
 
-  // Outer float / tilt based on current state
+  // Outer float / tilt / pace based on current state
   const outerAnimate = dragging
     ? { rotate: [-10, 10, -10], y: [0, -8, 0] }
+    : speaking
+    ? { y: [0, -9, 0], rotate: [-1.5, 1.5, -1.5], x: [-28, 28, -28] }
     : { y: [0, -13, 0], rotate: [-1.5, 1.5, -1.5] };
 
   const outerTransition = dragging
     ? { duration: 0.4, repeat: Infinity, ease: "easeInOut" as const }
+    : speaking
+    ? {
+        y: { duration: 1.8, repeat: Infinity, ease: "easeInOut" as const },
+        rotate: { duration: 4.5, repeat: Infinity, ease: "easeInOut" as const },
+        x: { duration: 3.5, repeat: Infinity, ease: "easeInOut" as const },
+      }
     : {
         y: { duration: 3.2, repeat: Infinity, ease: "easeInOut" as const },
         rotate: { duration: 4.5, repeat: Infinity, ease: "easeInOut" as const },
@@ -86,65 +94,54 @@ export function IkagengLeaf({
         />
 
         {/* ── LEGS ── rendered before body so body sits on top */}
-        {/* Body sway group when speaking (pacing effect) */}
+        {/* Left leg */}
         <motion.g
-          animate={{ x: speaking ? [-2.5, 2.5, -2.5] : 0 }}
+          style={{ transformOrigin: "43px 108px" }}
+          animate={{ rotate: speaking ? [-24, 24, -24] : [-4, 4, -4] }}
           transition={{
-            duration: speaking ? 1.1 : 0.4,
-            repeat: speaking ? Infinity : 0,
+            duration: speaking ? 0.52 : 3.5,
+            repeat: Infinity,
             ease: "easeInOut",
           }}
         >
-          {/* Left leg */}
-          <motion.g
-            style={{ transformOrigin: "43px 108px" }}
-            animate={{ rotate: speaking ? [-24, 24, -24] : [-4, 4, -4] }}
-            transition={{
-              duration: speaking ? 0.55 : 3.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <path
-              d="M43,108 C41,118 39,128 37,140"
-              stroke="#1D5E45"
-              strokeWidth="10"
-              strokeLinecap="round"
-              fill="none"
-            />
-            {/* Foot */}
-            <ellipse
-              cx="35" cy="143"
-              rx="9.5" ry="5"
-              fill="#164C38"
-              transform="rotate(-15 35 143)"
-            />
-          </motion.g>
+          <path
+            d="M43,108 C41,118 39,128 37,140"
+            stroke="#1D5E45"
+            strokeWidth="10"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <ellipse
+            cx="35" cy="143"
+            rx="9.5" ry="5"
+            fill="#164C38"
+            transform="rotate(-15 35 143)"
+          />
+        </motion.g>
 
-          {/* Right leg – opposite phase */}
-          <motion.g
-            style={{ transformOrigin: "57px 108px" }}
-            animate={{ rotate: speaking ? [24, -24, 24] : [4, -4, 4] }}
-            transition={{
-              duration: speaking ? 0.55 : 3.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <path
-              d="M57,108 C59,118 61,128 63,140"
-              stroke="#1D5E45"
-              strokeWidth="10"
-              strokeLinecap="round"
-              fill="none"
-            />
-            <ellipse
-              cx="65" cy="143"
-              rx="9.5" ry="5"
-              fill="#164C38"
-              transform="rotate(15 65 143)"
-            />
-          </motion.g>
+        {/* Right leg – opposite phase */}
+        <motion.g
+          style={{ transformOrigin: "57px 108px" }}
+          animate={{ rotate: speaking ? [24, -24, 24] : [4, -4, 4] }}
+          transition={{
+            duration: speaking ? 0.52 : 3.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <path
+            d="M57,108 C59,118 61,128 63,140"
+            stroke="#1D5E45"
+            strokeWidth="10"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <ellipse
+            cx="65" cy="143"
+            rx="9.5" ry="5"
+            fill="#164C38"
+            transform="rotate(15 65 143)"
+          />
         </motion.g>
 
         {/* ── LEFT ARM ── */}

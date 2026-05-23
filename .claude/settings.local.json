@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('main:', d.get\\('main',''\\), 'exports:', d.get\\('exports',''\\)\\)\")",
+      "Bash(node -e \"try { const b = require\\('/mnt/c/Users/bumos/Documents/tfsa-learn/node_modules/bufferutil'\\); console.log\\('found:', typeof b.mask\\); } catch\\(e\\) { console.log\\('not found:', e.message\\); }\")",
+      "Bash(node -e \"process.mainModule={filename:'/mnt/c/Users/bumos/Documents/tfsa-learn/index.js'}; try{const b=require\\('bufferutil'\\);console.log\\('resolved:',require.resolve\\('bufferutil'\\)\\);}catch\\(e\\){console.log\\('not found'\\)}\")",
+      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);print\\('peerDeps:',d.get\\('peerDependencies',{}\\)\\);print\\('optPeerDeps:',d.get\\('optionalPeerDependencies',{}\\)\\)\")"
+    ]
+  }
+}
