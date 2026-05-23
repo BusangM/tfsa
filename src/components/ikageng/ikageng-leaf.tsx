@@ -97,94 +97,68 @@ export function IkagengLeaf({
         {/* Left leg */}
         <motion.g
           style={{ transformOrigin: "43px 108px" }}
-          animate={{ rotate: speaking ? [-24, 24, -24] : [-4, 4, -4] }}
+          animate={{ rotate: speaking ? [-22, 22, -22] : [-5, 5, -5] }}
           transition={{
-            duration: speaking ? 0.52 : 3.5,
+            duration: speaking ? 0.5 : 3.5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         >
-          <path
-            d="M43,108 C41,118 39,128 37,140"
-            stroke="#1D5E45"
-            strokeWidth="10"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <ellipse
-            cx="35" cy="143"
-            rx="9.5" ry="5"
-            fill="#164C38"
-            transform="rotate(-15 35 143)"
-          />
+          <rect x="37" y="108" width="12" height="30" rx="6" fill="#1D5E45" />
+          {/* Foot */}
+          <rect x="30" y="134" width="19" height="9" rx="4.5" fill="#164C38" />
         </motion.g>
 
         {/* Right leg – opposite phase */}
         <motion.g
           style={{ transformOrigin: "57px 108px" }}
-          animate={{ rotate: speaking ? [24, -24, 24] : [4, -4, 4] }}
+          animate={{ rotate: speaking ? [22, -22, 22] : [5, -5, 5] }}
           transition={{
-            duration: speaking ? 0.52 : 3.5,
+            duration: speaking ? 0.5 : 3.5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         >
-          <path
-            d="M57,108 C59,118 61,128 63,140"
-            stroke="#1D5E45"
-            strokeWidth="10"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <ellipse
-            cx="65" cy="143"
-            rx="9.5" ry="5"
-            fill="#164C38"
-            transform="rotate(15 65 143)"
-          />
+          <rect x="51" y="108" width="12" height="30" rx="6" fill="#1D5E45" />
+          {/* Foot */}
+          <rect x="51" y="134" width="19" height="9" rx="4.5" fill="#164C38" />
         </motion.g>
 
         {/* ── LEFT ARM ── */}
         <motion.g
-          style={{ transformOrigin: "19px 72px" }}
+          style={{ transformOrigin: "22px 75px" }}
           animate={
             dragging
-              ? { rotate: -75 }
+              ? { rotate: -70 }
               : speaking
-              ? { rotate: [-18, 14, -18] }
+              ? { rotate: [-20, 12, -20] }
               : waving
-              ? { rotate: [0, 0, 0] } // waving handled by right arm
-              : { rotate: [-7, 5, -7] }
+              ? { rotate: [0, 0, 0] }
+              : { rotate: [-8, 6, -8] }
           }
           transition={{
-            duration: dragging ? 0.25 : speaking ? 0.92 : 3.2,
+            duration: dragging ? 0.25 : speaking ? 0.9 : 3.2,
             repeat: dragging ? 0 : Infinity,
             ease: dragging ? "easeOut" : "easeInOut",
             delay: speaking ? 0.18 : 0,
           }}
         >
-          <path
-            d="M19,72 C13,81 9,91 7,103"
-            stroke="#2A8060"
-            strokeWidth="9"
-            strokeLinecap="round"
-            fill="none"
-          />
+          <rect x="14" y="75" width="11" height="28" rx="5.5" fill="#2A8060" />
           {/* Hand */}
-          <circle cx="6" cy="106" r="5.5" fill="#1D6A50" />
+          <circle cx="19.5" cy="107" r="6.5" fill="#1D6A50" />
         </motion.g>
 
         {/* ── RIGHT ARM — the lecture / wave arm ── */}
         <motion.g
-          style={{ transformOrigin: "81px 72px" }}
+          style={{ transformOrigin: "78px 75px" }}
           animate={
             dragging
-              ? { rotate: 75 }
+              ? { rotate: 70 }
               : waving
-              ? { rotate: [-70, -20, -70, -20, -70, 0] }
+              ? { rotate: [-65, -15, -65, -15, -65, 0] }
               : speaking
-              ? { rotate: [-58, -28, -58] }  // raised, gesturing like a lecture
-              : { rotate: [7, -5, 7] }
+              ? { rotate: [-55, -25, -55] }
+              : { rotate: [8, -6, 8] }
           }
           transition={{
             duration: dragging
@@ -198,14 +172,9 @@ export function IkagengLeaf({
             ease: dragging ? "easeOut" : "easeInOut",
           }}
         >
-          <path
-            d="M81,72 C87,81 91,91 93,103"
-            stroke="#2A8060"
-            strokeWidth="9"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <circle cx="94" cy="106" r="5.5" fill="#1D6A50" />
+          <rect x="75" y="75" width="11" height="28" rx="5.5" fill="#2A8060" />
+          {/* Hand */}
+          <circle cx="80.5" cy="107" r="6.5" fill="#1D6A50" />
         </motion.g>
 
         {/* ── BODY ── */}
