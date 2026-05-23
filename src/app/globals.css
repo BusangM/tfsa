@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: #f8faf9;
+  --color-foreground: #1a2e28;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a2e28;
+  --color-primary: #2d6a5a;
+  --color-primary-foreground: #f8faf9;
+  --color-secondary: #e8f3ef;
+  --color-secondary-foreground: #1a4d3f;
+  --color-muted: #eef4f2;
+  --color-muted-foreground: #5c7269;
+  --color-accent: #f0f7e8;
+  --color-accent-foreground: #3d5c2e;
+  --color-destructive: #c45c4a;
+  --color-destructive-foreground: #fff8f6;
+  --color-warning: #e8a838;
+  --color-warning-foreground: #4a3510;
+  --color-border: #d4e4de;
+  --color-input: #d4e4de;
+  --color-ring: #2d6a5a;
+  --color-sidebar: #f3f8f6;
+  --color-sidebar-foreground: #1a2e28;
+  --color-sidebar-active: #ffffff;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.dark {
+  --color-background: #0f1614;
+  --color-foreground: #e8f0ed;
+  --color-card: #162420;
+  --color-card-foreground: #e8f0ed;
+  --color-primary: #5cb89a;
+  --color-primary-foreground: #0f1614;
+  --color-secondary: #1e332c;
+  --color-secondary-foreground: #b8d4ca;
+  --color-muted: #1a2824;
+  --color-muted-foreground: #8aa399;
+  --color-accent: #1f2e1a;
+  --color-accent-foreground: #c8ddb8;
+  --color-destructive: #e07a6a;
+  --color-destructive-foreground: #1a0f0d;
+  --color-warning: #e8a838;
+  --color-warning-foreground: #f5ecd8;
+  --color-border: #2a3d36;
+  --color-input: #2a3d36;
+  --color-ring: #5cb89a;
+  --color-sidebar: #121c19;
+  --color-sidebar-foreground: #d4e4de;
+  --color-sidebar-active: #1a2824;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-gradient {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, #d4ebe4 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, #f0f7e8 0%, transparent 40%),
+    var(--color-background);
+}
+
+.dark .app-gradient {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, #1a332c 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, #1a2418 0%, transparent 40%),
+    var(--color-background);
+}
